@@ -28,7 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Container(
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
-                          .collection("products")
+                          .collection("products").doc("a9h4Ih1fxiD6fpkl7PLs").collection("featureproducts")
                           .where("name",
                               isGreaterThanOrEqualTo: inputText)
                           .snapshots(),
@@ -56,7 +56,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               elevation: 5,
                               child: ListTile(
                                 title: Text(data['name']),
-                                leading: Image.network(data['image'][0]),
+                                //leading: Image.network(data['image'][0]),
+                                
                               ),
                             );
                           }).toList(),

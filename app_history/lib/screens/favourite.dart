@@ -27,6 +27,7 @@ class _FavouriteState extends State<Favourite> {
           },
         ),
       ),
+      
       body: SafeArea(
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -52,6 +53,10 @@ class _FavouriteState extends State<Favourite> {
                       elevation: 5,
                       child: ListTile(
                         leading: Text(_documentSnapshot['name']),
+                        onTap: (){
+                          
+
+                        },
                         trailing: GestureDetector(
                           child: CircleAvatar(
                             child: Icon(Icons.remove_circle),

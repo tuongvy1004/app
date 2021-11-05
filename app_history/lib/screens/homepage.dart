@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
           "name": qn.docs[i]["name"],
           "description": qn.docs[i]["description"],
           "image": qn.docs[i]["image"],
+          "translate":qn.docs[i]["translate"]
         });
       }
     });
@@ -173,14 +174,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 5.0,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.favorite),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                    ],
-                  )
+                  
                 ],
               ))
             ],

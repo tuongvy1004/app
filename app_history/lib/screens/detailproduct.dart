@@ -7,8 +7,6 @@ class DetailScreens extends StatefulWidget {
   var _product;
 
   DetailScreens(this._product);
-  
-  
 
   @override
   _DetailScreensState createState() => _DetailScreensState();
@@ -32,7 +30,9 @@ class _DetailScreensState extends State<DetailScreens> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -46,6 +46,16 @@ class _DetailScreensState extends State<DetailScreens> {
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
+        bottom: TabBar(
+          labelColor: Colors.black87,
+                    indicatorColor: Colors.deepOrange,
+                    unselectedLabelColor: Colors.grey,
+          tabs:[
+            Tab(text: 'VIETNAMESE'),
+            Tab(text: 'ENGLISH')
+          ]
+        ),
+
         actions: [
           StreamBuilder(
             stream: FirebaseFirestore.instance
@@ -82,8 +92,10 @@ class _DetailScreensState extends State<DetailScreens> {
           ),
         ],
       ),
-      body: Container(
-        child: SingleChildScrollView(
+      body: TabBarView(
+        children:<Widget> [
+            Card(
+              child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Center(
@@ -137,7 +149,120 @@ class _DetailScreensState extends State<DetailScreens> {
             ],
           ),
         ),
-      ),
-    );
+            ),
+            Card(
+              child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Center(
+                child: Container(
+                  width: 350,
+                  child: Card(
+                    child: Container(
+                      padding: EdgeInsets.all(13),
+                      child: Container(
+                        height: 220,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(widget._product['image']),
+                        )),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      widget._product['name'],
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      widget._product["translate"],
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+            )
+          ],
+      )
+      // body: Container(
+      //   child: SingleChildScrollView(
+      //     child: Column(
+      //       children: <Widget>[
+      //         Center(
+      //           child: Container(
+      //             width: 350,
+      //             child: Card(
+      //               child: Container(
+      //                 padding: EdgeInsets.all(13),
+      //                 child: Container(
+      //                   height: 220,
+      //                   decoration: BoxDecoration(
+      //                       image: DecorationImage(
+      //                     fit: BoxFit.fill,
+      //                     image: NetworkImage(widget._product['image']),
+      //                   )),
+      //                 ),
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //         SizedBox(
+      //           height: 10.0,
+      //         ),
+      //         Padding(
+      //           padding: EdgeInsets.symmetric(horizontal: 8.0),
+      //           child: Column(
+      //             children: [
+      //               Text(
+      //                 widget._product['name'],
+      //                 style: TextStyle(
+      //                   fontSize: 22.0,
+      //                   fontWeight: FontWeight.w500,
+      //                 ),
+      //               ),
+      //               SizedBox(
+      //                 height: 10.0,
+      //               ),
+      //               SizedBox(
+      //                 height: 12.0,
+      //               ),
+      //               Text(
+      //                 widget._product["description"],
+      //                 style: TextStyle(
+      //                   fontSize: 18.0,
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
+    ));
   }
 }
