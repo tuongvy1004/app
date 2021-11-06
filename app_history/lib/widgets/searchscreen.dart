@@ -56,8 +56,6 @@ class _SearchScreenState extends State<SearchScreen> {
                               elevation: 5,
                               child: ListTile(
                                 title: Text(data['name']),
-                                //leading: Image.network(data['image'][0]),
-                                
                               ),
                             );
                           }).toList(),

@@ -65,7 +65,7 @@ class _LoginState extends State<Login> {
                           },
                           decoration: InputDecoration(
                               icon: Icon(
-                                Icons.person_add,
+                                Icons.mail,
                                 color: Colors.lightBlue,
                               ),
                               hintText: 'Email',
@@ -89,27 +89,28 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         TextFormField(
-                            obscureText: obserText,
-                            validator: (value) {
-                              if (value == "") {
-                                return "Vui lòng nhập mật khẩu";
-                              } else if (value!.length < 8) {
-                                return "Mật khẩu quá ngắn";
-                              }
-                              return "";
-                            },
-                            decoration: InputDecoration(
-                                icon: Icon(
-                                  Icons.person_add,
-                                  color: Colors.lightBlue,
-                                ),
-                                hintText: 'Mật khẩu',
-                                border: InputBorder.none),
-                            onChanged: (value) {
-                              setState(() {
-                                password = value;
-                              });
-                            },)
+                          obscureText: obserText,
+                          validator: (value) {
+                            if (value == "") {
+                              return "Vui lòng nhập mật khẩu";
+                            } else if (value!.length < 8) {
+                              return "Mật khẩu quá ngắn";
+                            }
+                            return "";
+                          },
+                          decoration: InputDecoration(
+                              icon: Icon(
+                                Icons.lock,
+                                color: Colors.lightBlue,
+                              ),
+                              hintText: 'Mật khẩu',
+                              border: InputBorder.none),
+                          onChanged: (value) {
+                            setState(() {
+                              password = value;
+                            });
+                          },
+                        )
                       ],
                     )),
                 Padding(
@@ -124,9 +125,22 @@ class _LoginState extends State<Login> {
                       ),
                       fillColor: Colors.lightBlue[300],
                       onPressed: () {
-                        validation();
-                      //  Navigator.push(context,
-                      //    MaterialPageRoute(builder: (context) => HomePage()));
+                        if (_formKey.currentState!.validate()) {
+                          validation();
+                        } else
+                        // _formKey.currentState!.save();
+
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => HomePage()));
+                        {
+                          Navigator.pushAndRemoveUntil(
+                              (context),
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                              (route) => false);
+                        }
                       },
                       child: Text(
                         'ĐĂNG NHẬP',

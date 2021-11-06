@@ -20,7 +20,6 @@ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 // RegExp regExp = new RegExp(p);
 
-
 bool obserText = true;
 String email = "";
 String password = "";
@@ -34,7 +33,7 @@ class _SignUpState extends State<SignUp> {
 //   } else {
 //     print("No");
 //   }
-// } 
+// }
   void validation() async {
     final FormState? _form = _formKey.currentState;
     if (!_form!.validate()) {
@@ -45,7 +44,6 @@ class _SignUpState extends State<SignUp> {
         print(result.user!.uid);
       } on PlatformException catch (e) {
         print(e.message.toString());
-        
       }
     } else {}
   }
@@ -53,7 +51,6 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
         elevation: 0,
         brightness: Brightness.light,
@@ -138,7 +135,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           decoration: InputDecoration(
                               icon: Icon(
-                                Icons.person_add,
+                                Icons.mail,
                                 color: Colors.lightBlue,
                               ),
                               hintText: 'Email',
@@ -173,7 +170,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           decoration: InputDecoration(
                               icon: Icon(
-                                Icons.person_add,
+                                Icons.lock,
                                 color: Colors.lightBlue,
                               ),
                               hintText: 'Mật khẩu',
@@ -200,9 +197,16 @@ class _SignUpState extends State<SignUp> {
                       fillColor: Colors.lightBlue[300],
                       onPressed: () {
                         validation();
-                        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
-                      },
+                       // final isValid = _formKey.currentState!.validate();
+    
+                        // if (_formKey.currentState!.validate()) {
+                        //    _formKey.currentState!.save();
+                           
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => HomePage()));
+                        },
                       child: Text(
                         'ĐĂNG KÝ',
                         style: TextStyle(
